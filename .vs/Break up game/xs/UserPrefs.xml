@@ -1,0 +1,32 @@
+﻿<Properties StartupConfiguration="{F670442E-CDE1-6A0C-A415-E6F9134EC069}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/DialogueManager.cs">
+    <Files>
+      <File FileName="Assets/Scripts/DialogueManager.cs.cs" Line="30" Column="28" />
+      <File FileName="Assets/Scripts/DialogueParser.cs" Line="173" Column="21" NotebookId="1" />
+      <File FileName="Assets/Scripts/CharacterParser.cs" Line="63" Column="2" NotebookId="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Break up game" expanded="True">
+            <Node name="Assets" expanded="True">
+              <Node name="Scripts" expanded="True">
+                <Node name="DialogueManager.cs" selected="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="e1924ec9-32a4-4bbe-b3d0-d3818539a582" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
