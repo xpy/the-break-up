@@ -7,29 +7,47 @@ using System;
 
 public class DialogueManager: MonoBehaviour
 {
+    public class TopicScore
+    {
+        public int currentScore;
+        public int total;
+
+        public TopicScore(int CurrentScore, int Total)
+        {
+            currentScore = CurrentScore;
+            total = Total;
+        }
+    }
+
     DialogueParser dialogueParser;
     Character character;
     
-    public Dictionary<string, List<DialogueAnswer>> selectedAnswers = new Dictionary<string, List<DialogueAnswer>>();
+    public Dictionary<string, List<DialogueOption>> selectedOptions = new Dictionary<string, List<DialogueOption>>();
     
-    List<Button> buttons = new List<Button>();
-    public Text dialogueBox;
+    List<GameObject> buttons = new List<GameObject>();
+    public Text answerBox;
     public Text characterNameBox;
 
-    public bool answerred;
+    public ChoiceButton choiceButtonPicked;
     public bool initialized;
+
+    public GameObject choiceBox;
+    public int round = 0;
+    
+    public Dictionary<string, TopicScore> topicScores = new Dictionary<string, TopicScore>();
 
     void Start()
     {
-        dialogueBox = GameObject.Find("Answer").GetComponentInChildren<Text>();
-        characterNameBox = GameObject.Find("CharacterName").GetComponentInChildren<Text>();
-
-        buttons = new List<Button>(GameObject.Find("DialogueOptionPanel").GetComponentsInChildren<Button>());
-
-        answerred = false;
-
         dialogueParser = GameObject.Find("DialogueParser").GetComponent<DialogueParser>();
         character = GameObject.Find("Character").GetComponent<Character>();
+
+        answerBox = GameObject.Find("Answer").GetComponent<Text>();
+        characterNameBox = GameObject.Find("CharacterName").GetComponent<Text>();
+
+        foreach(string topic in dialogueParser.dialogue.Keys)
+        {
+            topicScores[topic] = new TopicScore(0, 0);
+        }
     }
 
     void PrepareAnswers() { 
@@ -53,120 +71,123 @@ public class DialogueManager: MonoBehaviour
                     continue;
                 }
 
-                DialogueAnswer answer = dst.GetAnswer(subtopic.Value);
+                DialogueOption answer = dst.GetAnswer(subtopic.Value);
                 if( answer == null)
                 {
                     Debug.Log("this should not happen, modifier: " + subtopic.Value);
                     continue;
                 }
 
-                if(!selectedAnswers.ContainsKey(dt.name))
+                if(!selectedOptions.ContainsKey(dt.name))
                 {
-                    selectedAnswers[dt.name] = new List<DialogueAnswer>();
+                    selectedOptions[dt.name] = new List<DialogueOption>();
                 }
-                selectedAnswers[dt.name].Add(answer);
+                selectedOptions[dt.name].Add(answer);
             }
         }
     }
 
     void Update()
     {
-        dialogueBox.text = "Answer be mine";
-
         if (!initialized)
         {
+            answerBox.text = "";
             PrepareAnswers();
-            setDialogueAnswers(getRandomAnswers());
             initialized = true;
+            setDialogueOptions(getRandomQuestions());
         }
 
-        if (Input.GetMouseButtonDown(0) && answerred)
+        if (Input.GetMouseButtonDown(0) && choiceButtonPicked != null)
         {
-            Debug.Log("here");
-            UpdateDialogue();            
+            UpdateDialogue();
         }
-        else
-        {
-        }
-        UpdateUI();
     }
 
-    private List<DialogueAnswer> getRandomAnswers()
+    private List<DialogueOption> getRandomQuestions()
     {
-        List<string> keyList = new List<string>(selectedAnswers.Keys);
+        List<string> keyList = new List<string>(selectedOptions.Keys);
         System.Random rand = new System.Random();
-        List<DialogueAnswer> result = new List<DialogueAnswer>();
+        List<DialogueOption> result = new List<DialogueOption>();
 
         for (int i = 0; i < 3; i++)
         {
             string randomKey = keyList[rand.Next(keyList.Count)];
             keyList.Remove(randomKey);
-            List<DialogueAnswer> topicAnswers = selectedAnswers[randomKey];
+            List<DialogueOption> topicAnswers = selectedOptions[randomKey];
             result.Add(topicAnswers[rand.Next(topicAnswers.Count)]);
         }
         return result;
     }
 
-    private void deleteAnswer(DialogueAnswer answer) {
-        if (!selectedAnswers.ContainsKey(answer.topic))
+    private void deleteOption(DialogueOption dialogueOption) {
+        if (!selectedOptions.ContainsKey(dialogueOption.topic))
         {
-            Debug.Log("Couldn't find topic " + answer.topic);
+            Debug.Log("Couldn't find topic " + dialogueOption.topic);
             return;
         }
-        selectedAnswers[answer.topic].Remove(answer);
-        if(selectedAnswers[answer.topic].Count == 0)
+        selectedOptions[dialogueOption.topic].Remove(dialogueOption);
+    
+        if(selectedOptions[dialogueOption.topic].Count == 0)
         {
-            selectedAnswers.Remove(answer.topic);
+            selectedOptions.Remove(dialogueOption.topic);
+            Debug.Log("Removed topic: " + dialogueOption.topic);
         }
     }
 
-    private void setDialogueAnswers(List<DialogueAnswer> answers)
+    private void setDialogueOptions(List<DialogueOption> options)
     {
-        foreach (DialogueAnswer answer in answers) {
-            
+        foreach(DialogueOption option in options)
+        {
+            deleteOption(option);
+        }
+        round++;
+        for (int i = 0; i < options.Count; i++) { 
+            DialogueOption option = options[i];
+            GameObject button = (GameObject)Instantiate(choiceBox);
+            Button b = button.GetComponent<Button>();
+            ChoiceButton cb = button.GetComponent<ChoiceButton>();
+            cb.SetText(option.sentence);
+            cb.dialogueOption = option;
+            cb.nextOptions = getRandomQuestions();
+            cb.box = this;
+            b.transform.SetParent(this.transform);
+            b.name = "Button " + i + "" + round;
+            //b.transform.localPosition = new Vector3(0, -25 + (i * 100));
+            //b.transform.localScale = new Vector3(1, 1, 1);
+            buttons.Add(button);
         }
     }
 
-    private void setAnswer(string text)
+    public void OptionPicked(ChoiceButton choiceButton)
     {
-        dialogueBox.text = text;
-    }
-
-    public void UpdateUI()
-    {
-        
+        if (choiceButtonPicked == null)
+        {
+            choiceButtonPicked = choiceButton;
+            DialogueOption dialogueOption = choiceButton.dialogueOption;
+            answerBox.text = dialogueOption.answer;
+            Debug.Log(answerBox.text);
+            TopicScore score = topicScores[dialogueOption.topic];
+            score.total = score.total + 1;
+            score.currentScore += dialogueOption.modifier;
+            Debug.Log(dialogueOption.topic + " " + score.total + " " + score.currentScore);
+        }
     }
 
     public void UpdateDialogue()
     {
-        setAnswer("");
+        ClearButtons();
+        setDialogueOptions(choiceButtonPicked.nextOptions);
+        choiceButtonPicked = null;
     }
-
-    //void CreateButtons()
-    //{
-    //    for (int i = 0; i < options.Length; i++)
-    //    {
-    //        GameObject button = (GameObject)Instantiate(choiceBox);
-    //        Button b = button.GetComponent<Button>();
-    //        ChoiceButton cb = button.GetComponent<ChoiceButton>();
-    //        cb.SetText(options[i].Split(':')[0]);
-    //        cb.option = options[i].Split(':')[1];
-    //        cb.box = this;
-    //        b.transform.SetParent(this.transform);
-    //        b.transform.localPosition = new Vector3(0, -25 + (i * 50));
-    //        b.transform.localScale = new Vector3(1, 1, 1);
-    //        buttons.Add(b);
-    //    }
-    //}
 
     void ClearButtons()
     {
         for (int i = 0; i < buttons.Count; i++)
         {
-            print("Clearing buttons");
-            Button b = buttons[i];
-            buttons.Remove(b);
-            Destroy(b.gameObject);
+            GameObject b = buttons[i];
+            Destroy(b.GetComponent<Button>().gameObject);
         }
+
+        buttons = new List<GameObject>();
     }
 }

@@ -6,13 +6,13 @@ using System.IO;
 using System.Text.RegularExpressions;
 using System;
 
-public class DialogueAnswer
+public class DialogueOption
 {
     public string sentence, answer, topic, subtopic;
     public int modifier;
 
 
-    public DialogueAnswer(string Topic, string Subtopic, string Sentence, string Answer, string Modifier)
+    public DialogueOption(string Topic, string Subtopic, string Sentence, string Answer, string Modifier)
     {
         topic = Topic;
         subtopic = Subtopic;
@@ -53,17 +53,17 @@ public class DialogueTopic
 public class DialogueSubTopic
 {
     public string name;
-    private List<DialogueAnswer> answersPositive = new List<DialogueAnswer>();
-    private List<DialogueAnswer> answersNegative = new List<DialogueAnswer>();
+    private List<DialogueOption> answersPositive = new List<DialogueOption>();
+    private List<DialogueOption> answersNegative = new List<DialogueOption>();
 
     public DialogueSubTopic(string Name)
     {
         name = Name;
     }
 
-    public DialogueAnswer GetAnswer(int modifier)
+    public DialogueOption GetAnswer(int modifier)
     {
-        List<DialogueAnswer> selectedAnswers = answersPositive;
+        List<DialogueOption> selectedAnswers = answersPositive;
         if (modifier == 0)
         {
             selectedAnswers = answersNegative;
@@ -75,7 +75,7 @@ public class DialogueSubTopic
         return selectedAnswers[0]; //use the first option for now
     }
 
-    public void AddAnswer(DialogueAnswer answer)
+    public void AddAnswer(DialogueOption answer)
     {
         if (answer.modifier == 0)
         {
@@ -144,7 +144,7 @@ public class DialogueParser : MonoBehaviour
                     string modifier = lineData[4];
 
                     GetTopic(topic).GetSubTopic(subtopic).AddAnswer(
-                        new DialogueAnswer(
+                        new DialogueOption(
                             topic, subtopic, sentence, answer, modifier)
                        );
                     topics.Add(topic);
