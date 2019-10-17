@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
-using System.Text;
 using System.IO;
 using System.Text.RegularExpressions;
 using System;
@@ -10,7 +9,7 @@ using System;
 public class DialogueAnswer
 {
     public string sentence, answer, topic, subtopic;
-    public string modifier;
+    public int modifier;
 
 
     public DialogueAnswer(string Topic, string Subtopic, string Sentence, string Answer, string Modifier)
@@ -19,7 +18,7 @@ public class DialogueAnswer
         subtopic = Subtopic;
         sentence = Sentence;
         answer = Answer;
-        modifier = Modifier;
+        modifier = Int32.Parse(Modifier);
     }
 
     public override string ToString()
@@ -62,10 +61,10 @@ public class DialogueSubTopic
         name = Name;
     }
 
-    public DialogueAnswer GetAnswer(string modifier)
+    public DialogueAnswer GetAnswer(int modifier)
     {
         List<DialogueAnswer> selectedAnswers = answersPositive;
-        if (modifier == "0")
+        if (modifier == 0)
         {
             selectedAnswers = answersNegative;
         }
@@ -78,7 +77,7 @@ public class DialogueSubTopic
 
     public void AddAnswer(DialogueAnswer answer)
     {
-        if (answer.modifier == "0")
+        if (answer.modifier == 0)
         {
             answersNegative.Add(answer);
         }
@@ -151,7 +150,7 @@ public class DialogueParser : MonoBehaviour
                     topics.Add(topic);
                     subtopics.Add(subtopic);
 
-                    Debug.Log(GetTopic(topic).GetSubTopic(subtopic).GetAnswer(modifier));
+                    //Debug.Log(GetTopic(topic).GetSubTopic(subtopic).GetAnswer(modifier));
                 }
             }
             while (line != null);

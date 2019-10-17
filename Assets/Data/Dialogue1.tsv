@@ -31,7 +31,7 @@ house	flowers	by the way, I really like the small cactus you put in the living r
 house	flowers	by the way, I really like the small cactus you put in the living room	I had to compensate something else ;)	1
 house	room	So I was thinking of turning the extra room into a game room	Great, then I could turn it into a torture room for you	0
 house	room	So I was thinking of turning the extra room into a game room	Sounds good, what console should we buy first?	1
-house 	pets	We should get another dog in the house besides you	I don't know, dogs and pigs don't get along usually	0
+house	pets	We should get another dog in the house besides you	I don't know, dogs and pigs don't get along usually	0
 house	pets	We should get another dog in the house besides you	Woof! (spank me my master)	1
 house	hair	Can you stop leaving hair everywhere? I feel like I live with a yeti!	Can you stop farting everywhere? I feel like I live in a warzone!	0
 house	hair	Can you stop leaving hair everywhere? I feel like I live with a yeti!	You're right, I'll just shave my head and problem solved :)	1
@@ -42,7 +42,12 @@ free time	visit	Maybe we can go visit my parents soon	How about right after my l
 free time	visit	Maybe we can go visit my parents soon	Why not, it's been a while since we've seen them	1
 free time	shopping	I can't handle any more shopping, just take my credit card and go	I make more money than you dumbass	0
 free time	shopping	I can't handle any more shopping, just take my credit card and go	Well I can always use the extra money, so why not?	1
-				
+free time	video games	Great news, I finally managed to max out my character in WoW	Does that unlock the sex ability? Cause that's the only way you get to do it anytime soon	0
+free time	video games	Great news, I finally managed to max out my character in WoW	Finally noob, now we can actually do some dungeons together!	1
+free time	zoo	why don't we go to the zoo tomorrow?	cause I saw your mom already once this week	0
+free time	zoo	why don't we go to the zoo tomorrow?	lovely! Please let's make a romantic picture with the peacocks	1
+free time	music	what's your favourite song?	"Die MF Die" by Dope	0
+free time	music	what's your favourite song?	"Love and marriage" Frank Sinatra	1
 movies	romance	I swear if you make me watch The Notebook one more time, I'm gonna shoot us both	Don't you dare insult The Notebook, it's the greatest movie of all time!	0
 movies	romance	I swear if you make me watch The Notebook one more time, I'm gonna shoot us both	You're right, we can watch something else for a change	1
 movies	action	I cried so hard watching John Wick last night	How the fuck can you get so invested in this crap?	0
@@ -53,3 +58,5 @@ movies	wizards	I'm not sure I even liked the Harry Potter books to be honest	Ava
 movies	wizards	I'm not sure I even liked the Harry Potter books to be honest	Yeah seems kinda overrated, Star Wars is way better!	1
 movies	scifi	I think Disney will just screw up the whole Star Wars franchise	I find your lack of faith disturbing (force choke)	0
 movies	scifi	I think Disney will just screw up the whole Star Wars franchise	Agreed, I have a bad feeling about this	1
+movies	war	Shall we watch Save Private Ryan this evening?	Yes, so I can fantasize about you dying many times	0
+movies	war	Shall we watch Save Private Ryan this evening?	yes but hold me tight all movie along	1

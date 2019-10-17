@@ -15,11 +15,17 @@ house	dishwasher	0
 house	couch	0
 house	flowers	1
 house	room	0
-house 	pets	0
+house	pets	0
 house	hair	0
 movies	romance	1
 movies	action	1
 movies	fantasy	1
 movies	wizards	0
 movies	scifi	1
-movies	horror	1
+movies	war	1
+free time	vacation	1
+free time	visit	1
+free time	shopping	1
+free time	video games	1
+free time	zoo	0
+free time	music	1
