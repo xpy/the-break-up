@@ -5,7 +5,7 @@ using System.IO;
 using System.Text.RegularExpressions;
 using System;
 
-public class Character : MonoBehaviour
+public class CharacterParser : MonoBehaviour
 {
     public Dictionary<string, Dictionary<string, int>> characterTraits;
     public string characterName = "Susi";

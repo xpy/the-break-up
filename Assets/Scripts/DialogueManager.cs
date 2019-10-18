@@ -20,7 +20,7 @@ public class DialogueManager: MonoBehaviour
     }
 
     DialogueParser dialogueParser;
-    Character character;
+    CharacterParser characterParser;
     
     public Dictionary<string, List<DialogueOption>> selectedOptions = new Dictionary<string, List<DialogueOption>>();
 
@@ -39,12 +39,12 @@ public class DialogueManager: MonoBehaviour
     void Start()
     {
         dialogueParser = GameObject.Find("DialogueParser").GetComponent<DialogueParser>();
-        character = GameObject.Find("Character").GetComponent<Character>();
+        characterParser = GameObject.Find("CharacterParser").GetComponent<CharacterParser>();
 
         answerBox = GameObject.Find("Answer").GetComponent<Text>();
         panels = GetComponentsInChildren<DialogueOptionPanel>();
         characterNameBox = GameObject.Find("CharacterName").GetComponent<Text>();
-        characterNameBox.text = character.characterName;
+        characterNameBox.text = characterParser.characterName;
         foreach(string topic in dialogueParser.dialogue.Keys)
         {
             topicScores[topic] = new TopicScore(0, 0);
@@ -52,7 +52,7 @@ public class DialogueManager: MonoBehaviour
     }
 
     void PrepareAnswers() { 
-        foreach(KeyValuePair<string, Dictionary<string, int>> topic in character.characterTraits){
+        foreach(KeyValuePair<string, Dictionary<string, int>> topic in characterParser.characterTraits){
             DialogueTopic dt;
             dialogueParser.dialogue.TryGetValue(topic.Key, out dt);
 
