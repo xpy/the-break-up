@@ -1,11 +1,9 @@
 ﻿<Properties StartupConfiguration="{28FF32F3-54A2-F266-ECF7-7380D53AFCA6}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/DialogueOptionPanel.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/MadnessIndicator.cs">
     <Files>
-      <File FileName="Assets/Scripts/ChoiceButton.cs" Line="11" Column="1" />
-      <File FileName="Assets/Scripts/Character.cs" Line="28" Column="6" />
-      <File FileName="Assets/Scripts/DialogueManager.cs" Line="110" Column="40" />
-      <File FileName="Assets/Scripts/DialogueOptionPanel.cs" Line="16" Column="36" />
-      <File FileName="Assets/Scripts/DialogueParser.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/DialogueManager.cs" Line="166" Column="13" />
+      <File FileName="Assets/Scripts/DialogueOptionPanel.cs" Line="30" Column="17" />
+      <File FileName="Assets/Scripts/MadnessIndicator.cs" Line="32" Column="10" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -13,7 +11,7 @@
           <Node name="the-break-up" expanded="True">
             <Node name="Assets" expanded="True">
               <Node name="Scripts" expanded="True">
-                <Node name="DialogueOptionPanel.cs" selected="True" />
+                <Node name="MadnessIndicator.cs" selected="True" />
               </Node>
             </Node>
           </Node>
@@ -28,7 +26,9 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="e5fa2b3b-ba4f-4f8b-84fd-228e9a42662d" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/Users/sven/the-break-up/Assets/Scripts/CharacterParser.cs" relfile="Assets/Scripts/CharacterParser.cs" line="16" column="1" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
 </Properties>

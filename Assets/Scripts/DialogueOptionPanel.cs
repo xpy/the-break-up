@@ -10,10 +10,13 @@ public class DialogueOptionPanel : MonoBehaviour
     public DialogueManager box;
     public List<DialogueOption> nextOptions;
     private List<Image> nextOptionImages;
+    public Color selectedColor;
+    public Color deselectedColor = Color.white;
 
     public void Start() {
         nextOptionImages = new List<Image>();
-        List<Image> bla = new List(GetComponentsInChildren<Image>());
+
+        List<Image> bla = new List<Image>(GetComponentsInChildren<Image>());
         foreach (Image nextOptionImage in bla)
         {
             if (nextOptionImage.name.StartsWith("topicImage", System.StringComparison.Ordinal)) {
@@ -29,11 +32,7 @@ public class DialogueOptionPanel : MonoBehaviour
         nextOptions = NextOptions;
         for(int i = 0; i < nextOptions.Count; i++)
         {
-            Debug.Log("Topic: " + nextOptions[i]);
             Sprite topic = Resources.Load<Sprite>("Sprites/topic-" + nextOptions[i].topic.Replace(" ", ""));
-            Debug.Log("TopicSprite: "+ topic);
-
-            print(nextOptionImages[i].name);
             nextOptionImages[i].sprite = topic;
         }
     }
@@ -43,8 +42,19 @@ public class DialogueOptionPanel : MonoBehaviour
         this.GetComponentInChildren<Button>().GetComponentInChildren<Text>().text = newText;
     }
 
+    private Image getButtonImage()
+    {
+        return this.GetComponentInChildren<Button>().GetComponent<Image>();
+    }
+
     public void OnClick()
     {
+        getButtonImage().color = selectedColor;
         box.OptionPicked(this);
+    }
+
+    public void Reset()
+    {
+        getButtonImage().color = deselectedColor;
     }
 }

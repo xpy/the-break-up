@@ -21,17 +21,18 @@ public class DialogueManager: MonoBehaviour
 
     DialogueParser dialogueParser;
     CharacterParser characterParser;
-    
+    MadnessIndicator madness;         
+
     public Dictionary<string, List<DialogueOption>> selectedOptions = new Dictionary<string, List<DialogueOption>>();
 
     DialogueOptionPanel[] panels;
     public Text answerBox;
     public Text characterNameBox;
-
+    
     public DialogueOptionPanel choiceOptionPicked;
-    public bool initialized;
+    private bool initialized = false;
+    public bool deletionEnabled;
 
-    public GameObject choiceBox;
     public int round = 0;
     
     public Dictionary<string, TopicScore> topicScores = new Dictionary<string, TopicScore>();
@@ -40,6 +41,7 @@ public class DialogueManager: MonoBehaviour
     {
         dialogueParser = GameObject.Find("DialogueParser").GetComponent<DialogueParser>();
         characterParser = GameObject.Find("CharacterParser").GetComponent<CharacterParser>();
+        madness = GameObject.Find("MadnessIndicator").GetComponent<MadnessIndicator>();
 
         answerBox = GameObject.Find("Answer").GetComponent<Text>();
         panels = GetComponentsInChildren<DialogueOptionPanel>();
@@ -111,12 +113,12 @@ public class DialogueManager: MonoBehaviour
         }
     }
 
-    private List<DialogueOption> getRandomQuestions()
+    private List<DialogueOption>  getRandomQuestions()
     {
         List<string> keyList = new List<string>(selectedOptions.Keys);
         System.Random rand = new System.Random();
         List<DialogueOption> result = new List<DialogueOption>();
-
+        
         for (int i = 0; i < 3; i++)
         {
             string randomKey = keyList[rand.Next(keyList.Count)];
@@ -144,15 +146,19 @@ public class DialogueManager: MonoBehaviour
 
     private void setDialogueOptions(List<DialogueOption> options)
     {
-        foreach (DialogueOption option in options)
+        if (deletionEnabled)
         {
-            deleteOption(option);
+            foreach (DialogueOption option in options)
+            {
+                deleteOption(option);
+            }
         }
         round++;
         for (int i = 0; i < options.Count; i++)
         {
             DialogueOption option = options[i];
             DialogueOptionPanel panel = panels[i];
+            panel.Reset();
 
             DialogueOptionPanel dop = panel.GetComponent<DialogueOptionPanel>();
             dop.SetText(option.sentence);
@@ -168,13 +174,31 @@ public class DialogueManager: MonoBehaviour
         {
             DialogueOption dialogueOption = optionPanel.dialogueOption;
             answerBox.text = dialogueOption.answer;
-            Debug.Log(answerBox.text);
             TopicScore score = topicScores[dialogueOption.topic];
-            score.total = score.total + 1;
+            score.total++;
+            print(dialogueOption.modifier);
             score.currentScore += dialogueOption.modifier;
-            Debug.Log(dialogueOption.topic + " " + score.total + " " + score.currentScore);
+            printScore();
             choiceOptionPicked = optionPanel;
         }
+    }
+
+    private void printScore()
+    {
+        TopicScore totals = new TopicScore(0, 0);
+        string result = "";
+
+        foreach (KeyValuePair<string, TopicScore> score in topicScores)
+        {
+            result += "\n" + score.Key + ": total=" + score.Value.total + " score=" + score.Value.currentScore;
+            totals.total += score.Value.total;
+            totals.currentScore += score.Value.currentScore;
+        }
+
+        madness.SetMadness(totals);
+
+        result = "Totals: total=" + totals.total + " score=" + totals.currentScore + result;
+        print(result);
     }
 
     public void UpdateDialogue()
