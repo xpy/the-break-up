@@ -193,7 +193,12 @@ public class DialogueManager: MonoBehaviour
             totals.currentScore += score.Value.currentScore;
         }
 
-        madness.SetTopicScore(totals);
+        float x = 1 - (float)totals.currentScore / totals.total;
+        GameObject theWoman = GameObject.Find("the-woman");
+        Debug.Log("AND THE SCOPRE IS!!! ");
+        print(""+x);
+
+        theWoman.GetComponent<TheWoman>().status = x;
 
         result = "Totals: total=" + totals.total + " score=" + totals.currentScore + result;
         print(result);
