@@ -64,9 +64,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Character.cs" />
-    <Compile Include="Assets\Scripts\Character1.cs" />
     <Compile Include="Assets\Scripts\ChoiceButton.cs" />
     <Compile Include="Assets\Scripts\DialogueManager.cs" />
+    <Compile Include="Assets\Scripts\DialogueOptionPanel.cs" />
     <Compile Include="Assets\Scripts\DialogueParser.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>/Users/sven/the-break-up/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>

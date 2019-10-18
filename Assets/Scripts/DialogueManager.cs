@@ -23,27 +23,28 @@ public class DialogueManager: MonoBehaviour
     Character character;
     
     public Dictionary<string, List<DialogueOption>> selectedOptions = new Dictionary<string, List<DialogueOption>>();
-    
-    List<GameObject> buttons = new List<GameObject>();
+
+    DialogueOptionPanel[] panels;
     public Text answerBox;
     public Text characterNameBox;
 
-    public ChoiceButton choiceButtonPicked;
+    public DialogueOptionPanel choiceOptionPicked;
     public bool initialized;
 
     public GameObject choiceBox;
     public int round = 0;
     
     public Dictionary<string, TopicScore> topicScores = new Dictionary<string, TopicScore>();
-
+    public bool mouseButtonWasDown = false;
     void Start()
     {
         dialogueParser = GameObject.Find("DialogueParser").GetComponent<DialogueParser>();
         character = GameObject.Find("Character").GetComponent<Character>();
 
         answerBox = GameObject.Find("Answer").GetComponent<Text>();
+        panels = GetComponentsInChildren<DialogueOptionPanel>();
         characterNameBox = GameObject.Find("CharacterName").GetComponent<Text>();
-
+        characterNameBox.text = character.characterName;
         foreach(string topic in dialogueParser.dialogue.Keys)
         {
             topicScores[topic] = new TopicScore(0, 0);
@@ -97,9 +98,15 @@ public class DialogueManager: MonoBehaviour
             setDialogueOptions(getRandomQuestions());
         }
 
-        if (Input.GetMouseButtonDown(0) && choiceButtonPicked != null)
+        if (Input.GetMouseButtonDown(0) && choiceOptionPicked != null)
         {
+            mouseButtonWasDown = true;
+        }
+        else if (Input.GetMouseButtonUp(0) && choiceOptionPicked != null && mouseButtonWasDown)
+        {
+            Debug.Log("I shall update");
             UpdateDialogue();
+            Debug.Log("I have updated");
         }
     }
 
@@ -136,58 +143,43 @@ public class DialogueManager: MonoBehaviour
 
     private void setDialogueOptions(List<DialogueOption> options)
     {
-        foreach(DialogueOption option in options)
+        foreach (DialogueOption option in options)
         {
             deleteOption(option);
         }
         round++;
-        for (int i = 0; i < options.Count; i++) { 
+        for (int i = 0; i < options.Count; i++)
+        {
             DialogueOption option = options[i];
-            GameObject button = (GameObject)Instantiate(choiceBox);
-            Button b = button.GetComponent<Button>();
-            ChoiceButton cb = button.GetComponent<ChoiceButton>();
-            cb.SetText(option.sentence);
-            cb.dialogueOption = option;
-            cb.nextOptions = getRandomQuestions();
-            cb.box = this;
-            b.transform.SetParent(this.transform);
-            b.name = "Button " + i + "" + round;
-            //b.transform.localPosition = new Vector3(0, -25 + (i * 100));
-            //b.transform.localScale = new Vector3(1, 1, 1);
-            buttons.Add(button);
+            DialogueOptionPanel panel = panels[i];
+
+            DialogueOptionPanel dop = panel.GetComponent<DialogueOptionPanel>();
+            dop.SetText(option.sentence);
+            dop.dialogueOption = option;
+            dop.SetNextOptions(getRandomQuestions());
+            dop.box = this;
         }
     }
 
-    public void OptionPicked(ChoiceButton choiceButton)
+    public void OptionPicked(DialogueOptionPanel optionPanel)
     {
-        if (choiceButtonPicked == null)
+        if (choiceOptionPicked == null)
         {
-            choiceButtonPicked = choiceButton;
-            DialogueOption dialogueOption = choiceButton.dialogueOption;
+            DialogueOption dialogueOption = optionPanel.dialogueOption;
             answerBox.text = dialogueOption.answer;
             Debug.Log(answerBox.text);
             TopicScore score = topicScores[dialogueOption.topic];
             score.total = score.total + 1;
             score.currentScore += dialogueOption.modifier;
             Debug.Log(dialogueOption.topic + " " + score.total + " " + score.currentScore);
+            choiceOptionPicked = optionPanel;
         }
     }
 
     public void UpdateDialogue()
     {
-        ClearButtons();
-        setDialogueOptions(choiceButtonPicked.nextOptions);
-        choiceButtonPicked = null;
-    }
-
-    void ClearButtons()
-    {
-        for (int i = 0; i < buttons.Count; i++)
-        {
-            GameObject b = buttons[i];
-            Destroy(b.GetComponent<Button>().gameObject);
-        }
-
-        buttons = new List<GameObject>();
+        setDialogueOptions(choiceOptionPicked.nextOptions);
+        choiceOptionPicked = null;
+        answerBox.text = "";
     }
 }
