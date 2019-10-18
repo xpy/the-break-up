@@ -3,8 +3,8 @@
     <Files>
       <File FileName="Assets/Scripts/ChoiceButton.cs" Line="11" Column="1" />
       <File FileName="Assets/Scripts/Character.cs" Line="28" Column="6" />
-      <File FileName="Assets/Scripts/DialogueManager.cs" Line="104" Column="9" />
-      <File FileName="Assets/Scripts/DialogueOptionPanel.cs" Line="27" Column="34" />
+      <File FileName="Assets/Scripts/DialogueManager.cs" Line="110" Column="40" />
+      <File FileName="Assets/Scripts/DialogueOptionPanel.cs" Line="16" Column="36" />
       <File FileName="Assets/Scripts/DialogueParser.cs" Line="1" Column="1" />
     </Files>
     <Pads>

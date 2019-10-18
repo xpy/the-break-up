@@ -9,24 +9,32 @@ public class DialogueOptionPanel : MonoBehaviour
     public DialogueOption dialogueOption;
     public DialogueManager box;
     public List<DialogueOption> nextOptions;
-    private Image[] nextOptionImages;
+    private List<Image> nextOptionImages;
 
     public void Start() {
-        nextOptionImages = GetComponentsInChildren<Image>();
+        nextOptionImages = new List<Image>();
+        List<Image> bla = new List(GetComponentsInChildren<Image>());
+        foreach (Image nextOptionImage in bla)
+        {
+            if (nextOptionImage.name.StartsWith("topicImage", System.StringComparison.Ordinal)) {
+                nextOptionImages.Add(nextOptionImage);
+            }
+        }
     }
 
-    public void Update() {
-
-    }
+    public void Update() { }
 
     public void SetNextOptions(List<DialogueOption> NextOptions)
     {
         nextOptions = NextOptions;
         for(int i = 0; i < nextOptions.Count; i++)
         {
-            Sprite topic = Resources.Load<Sprite>("Sprites/topic-" + nextOptions[i].topic);
+            Debug.Log("Topic: " + nextOptions[i]);
+            Sprite topic = Resources.Load<Sprite>("Sprites/topic-" + nextOptions[i].topic.Replace(" ", ""));
+            Debug.Log("TopicSprite: "+ topic);
 
-            //nextOptionImages[i].;
+            print(nextOptionImages[i].name);
+            nextOptionImages[i].sprite = topic;
         }
     }
 

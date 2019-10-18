@@ -107,6 +107,7 @@ public class DialogueManager: MonoBehaviour
             Debug.Log("I shall update");
             UpdateDialogue();
             Debug.Log("I have updated");
+            mouseButtonWasDown = false;
         }
     }
 
