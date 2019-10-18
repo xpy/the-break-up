@@ -21,10 +21,9 @@ public class DialogueManager: MonoBehaviour
 
     DialogueParser dialogueParser;
     CharacterParser characterParser;
-    TopicIndicator madness;         
-
+    
     public Dictionary<string, List<DialogueOption>> selectedOptions = new Dictionary<string, List<DialogueOption>>();
-    public Dictionary<string, List<TopicIndicator>> topicIndicators= new Dictionary<string, List<TopicIndicator>>();
+    public Dictionary<string, TopicIndicator> topicIndicators= new Dictionary<string, TopicIndicator>();
 
     DialogueOptionPanel[] panels;
     public Text answerBox;
@@ -42,16 +41,11 @@ public class DialogueManager: MonoBehaviour
     {
         dialogueParser = GameObject.Find("DialogueParser").GetComponent<DialogueParser>();
         characterParser = GameObject.Find("CharacterParser").GetComponent<CharacterParser>();
-        TopicIndicator[] topicIndicators = GameObject.Find("TopicIndicators").GetComponents<TopicIndicator>();
-
+        
         answerBox = GameObject.Find("Answer").GetComponent<Text>();
         panels = GetComponentsInChildren<DialogueOptionPanel>();
         characterNameBox = GameObject.Find("CharacterName").GetComponent<Text>();
         characterNameBox.text = characterParser.characterName;
-        foreach(string topic in dialogueParser.dialogue.Keys)
-        {
-            topicScores[topic] = new TopicScore(0, 0);
-        }
     }
 
     void PrepareAnswers() { 
@@ -95,6 +89,18 @@ public class DialogueManager: MonoBehaviour
     {
         if (!initialized)
         {
+            TopicIndicator[] indicators = GameObject.Find("TopicIndicators").GetComponentsInChildren<TopicIndicator>();
+            foreach (TopicIndicator topicIndicator in indicators)
+            {
+                topicIndicators.Add(topicIndicator.topic, topicIndicator);
+            }
+
+            foreach (string topic in dialogueParser.dialogue.Keys)
+            {
+                topicScores[topic] = new TopicScore(0, 0);
+                topicIndicators[topic].topicScore = topicScores[topic];
+            }
+
             answerBox.text = "";
             PrepareAnswers();
             initialized = true;
@@ -160,7 +166,7 @@ public class DialogueManager: MonoBehaviour
             panel.Reset();
 
             DialogueOptionPanel dop = panel.GetComponent<DialogueOptionPanel>();
-            dop.SetText(option.sentence);
+            dop.SetDialogueOption(option);
             dop.dialogueOption = option;
             dop.SetNextOptions(getRandomQuestions());
             dop.box = this;

@@ -5,24 +5,24 @@ food	wine	0
 food	burger	0
 food	vegan	0
 food	coffee	0
-body	weight	1
-body	eyes	1
-body	shoes	1
-body	boobs	1
-body	belly	0
-body	hands	1
+body	weight	0
+body	eyes	0
+body	shoes	0
+body	boobs	0
+body	belly	1
+body	hands	0
 house	dishwasher	0
 house	couch	0
 house	flowers	1
 house	room	0
-house	pets	0
+house	pets	1
 house	hair	0
 movies	romance	1
 movies	action	1
 movies	fantasy	1
 movies	wizards	0
 movies	scifi	1
-movies	war	1
+movies	war	0
 free time	vacation	1
 free time	visit	1
 free time	shopping	1

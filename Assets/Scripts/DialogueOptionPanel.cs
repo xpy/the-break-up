@@ -36,6 +36,24 @@ public class DialogueOptionPanel : MonoBehaviour
             nextOptionImages[i].sprite = topic;
         }
     }
+    public void SetDialogueOption(DialogueOption option)
+    {
+        SetButtonImage(option.topic);
+        SetText(option.sentence);
+    }
+
+    public void SetButtonImage(string topic)
+    {
+        Sprite topicSprite = Resources.Load<Sprite>("Sprites/topic-" + topic.Replace(" ", ""));
+        Image[] images = this.GetComponentInChildren<Button>().GetComponentsInChildren<Image>();
+        foreach(Image image in images)
+        {
+            if(image.name == "Image")
+            {
+                image.sprite = topicSprite;
+            }
+        }
+    }
 
     public void SetText(string newText)
     {

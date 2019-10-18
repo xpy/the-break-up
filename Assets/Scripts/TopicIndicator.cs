@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class TopicIndicator : MonoBehaviour
 {
-    public float x;
+    public DialogueManager.TopicScore topicScore;
     public string topic;
     // Start is called before the first frame update
     void Start()
@@ -25,11 +25,12 @@ public class TopicIndicator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        GetComponent<Image>().color = new Color(0.5f, 0.5f, 0.5f, 1);
+        if (topicScore == null)
+        {
+            return;
+        }
+        float x = 1.0f - ((float)topicScore.currentScore / topicScore.total);
         GetComponent<Image>().color = new Color(2.0f * x, 2.0f * (1 - x), 0);
-    }
-
-    public void SetTopicScore(DialogueManager.TopicScore score)
-    {
-        x =(float) score.currentScore / score.total;
     }
 }
