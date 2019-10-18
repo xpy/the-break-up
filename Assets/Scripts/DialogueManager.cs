@@ -21,9 +21,10 @@ public class DialogueManager: MonoBehaviour
 
     DialogueParser dialogueParser;
     CharacterParser characterParser;
-    MadnessIndicator madness;         
+    TopicIndicator madness;         
 
     public Dictionary<string, List<DialogueOption>> selectedOptions = new Dictionary<string, List<DialogueOption>>();
+    public Dictionary<string, List<TopicIndicator>> topicIndicators= new Dictionary<string, List<TopicIndicator>>();
 
     DialogueOptionPanel[] panels;
     public Text answerBox;
@@ -41,7 +42,7 @@ public class DialogueManager: MonoBehaviour
     {
         dialogueParser = GameObject.Find("DialogueParser").GetComponent<DialogueParser>();
         characterParser = GameObject.Find("CharacterParser").GetComponent<CharacterParser>();
-        madness = GameObject.Find("MadnessIndicator").GetComponent<MadnessIndicator>();
+        TopicIndicator[] topicIndicators = GameObject.Find("TopicIndicators").GetComponents<TopicIndicator>();
 
         answerBox = GameObject.Find("Answer").GetComponent<Text>();
         panels = GetComponentsInChildren<DialogueOptionPanel>();
@@ -132,7 +133,6 @@ public class DialogueManager: MonoBehaviour
     private void deleteOption(DialogueOption dialogueOption) {
         if (!selectedOptions.ContainsKey(dialogueOption.topic))
         {
-            Debug.Log("Couldn't find topic " + dialogueOption.topic);
             return;
         }
         selectedOptions[dialogueOption.topic].Remove(dialogueOption);
@@ -140,7 +140,6 @@ public class DialogueManager: MonoBehaviour
         if(selectedOptions[dialogueOption.topic].Count == 0)
         {
             selectedOptions.Remove(dialogueOption.topic);
-            Debug.Log("Removed topic: " + dialogueOption.topic);
         }
     }
 
@@ -176,7 +175,6 @@ public class DialogueManager: MonoBehaviour
             answerBox.text = dialogueOption.answer;
             TopicScore score = topicScores[dialogueOption.topic];
             score.total++;
-            print(dialogueOption.modifier);
             score.currentScore += dialogueOption.modifier;
             printScore();
             choiceOptionPicked = optionPanel;
@@ -195,7 +193,7 @@ public class DialogueManager: MonoBehaviour
             totals.currentScore += score.Value.currentScore;
         }
 
-        madness.SetMadness(totals);
+        madness.SetTopicScore(totals);
 
         result = "Totals: total=" + totals.total + " score=" + totals.currentScore + result;
         print(result);
