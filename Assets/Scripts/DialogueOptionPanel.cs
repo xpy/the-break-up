@@ -40,6 +40,7 @@ public class DialogueOptionPanel : MonoBehaviour
     {
         SetButtonImage(option.topic);
         SetText(option.sentence);
+        dialogueOption = option;
     }
 
     public void SetButtonImage(string topic)

@@ -1,31 +1,47 @@
 topic	subtopic	modifier
-food	pizza	1
+food	pizza	0
 food	salad	0
-food	wine	0
-food	burger	0
+food	wine	1
+food	burger	1
 food	vegan	0
 food	coffee	0
+food	pasta	0
+food	cappuccino	1
+food	fruit	0
 body	weight	0
 body	eyes	0
-body	shoes	0
+body	shoes	1
 body	boobs	0
-body	belly	1
-body	hands	0
+body	belly	0
+body	hands	1
+body	legs	0
+body	nails	0
+body	tatoo	0
 house	dishwasher	0
-house	couch	0
+house	couch	1
 house	flowers	1
-house	room	0
-house	pets	1
+house	room	1
+house	pets	0
 house	hair	0
-movies	romance	1
-movies	action	1
-movies	fantasy	1
-movies	wizards	0
-movies	scifi	1
-movies	war	0
+house	curtains	1
+house	chair	1
+house	bedroom	0
 free time	vacation	1
 free time	visit	1
-free time	shopping	1
+free time	shopping	0
 free time	video games	1
 free time	zoo	0
-free time	music	1
+free time	music	0
+free time	bowling	1
+free time	origami	0
+free time	yoga	0
+movies	romance	0
+movies	action	0
+movies	fantasy	1
+movies	wizards	0
+movies	scifi	0
+movies	war	0
+movies	animated	1
+movies	splatter	0
+movies	adventure	0
+movies	spy	0

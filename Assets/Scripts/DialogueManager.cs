@@ -34,7 +34,8 @@ public class DialogueManager: MonoBehaviour
     public bool deletionEnabled;
 
     public int round = 0;
-    
+    System.Random rand = new System.Random();
+
     public Dictionary<string, TopicScore> topicScores = new Dictionary<string, TopicScore>();
     public bool mouseButtonWasDown = false;
     void Start()
@@ -48,7 +49,7 @@ public class DialogueManager: MonoBehaviour
         characterNameBox.text = characterParser.characterName;
     }
 
-    void PrepareAnswers() { 
+    void PrepareAnswers() {
         foreach(KeyValuePair<string, Dictionary<string, int>> topic in characterParser.characterTraits){
             DialogueTopic dt;
             dialogueParser.dialogue.TryGetValue(topic.Key, out dt);
@@ -123,7 +124,7 @@ public class DialogueManager: MonoBehaviour
     private List<DialogueOption>  getRandomQuestions()
     {
         List<string> keyList = new List<string>(selectedOptions.Keys);
-        System.Random rand = new System.Random();
+        
         List<DialogueOption> result = new List<DialogueOption>();
         
         for (int i = 0; i < 3; i++)
@@ -167,7 +168,6 @@ public class DialogueManager: MonoBehaviour
 
             DialogueOptionPanel dop = panel.GetComponent<DialogueOptionPanel>();
             dop.SetDialogueOption(option);
-            dop.dialogueOption = option;
             dop.SetNextOptions(getRandomQuestions());
             dop.box = this;
         }

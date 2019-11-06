@@ -10,13 +10,7 @@ food	burger	My stomach would love a good juicy burger	yeah, let's grind more ani
 food	vegan	So now you're suddenly vegan, or vegeterian, or whatever this is?	Meat is MURDER!	0
 food	vegan	So now you're suddenly vegan, or vegeterian, or whatever this is?	I know it's hard to understand, but you'll get used to it	1
 food	coffee	that is the 5th coffee you take	it's hard to stay awake with you talking	0
-food	coffee	that is the 5th coffee you take	"we have a long night ahead of us... ;)"	1
-food	pasta	Pastaaaaa!	Up your aaaass!	0
-food	pasta	Pastaaaaa!	Me toooo!	1
-food	cappuccino	I don't think cappuccino and steak is a good combination of flavours	I would bet it's still better than your breath	0
-food	cappuccino	I don't think cappuccino and steak is a good combination of flavours	waiter! please bring me a glass of red wine	1
-food	fruit	Do you fancy a banana?	Sure, call the waiter	0
-food	fruit	Do you fancy a banana?	"and two nuts ;)"	1
+food	coffee	that is the 5th coffee you take	we have a long night ahead of us... ;)	1
 body	weight	Glad to see you have lost a bit of weight lately	Thanks, too bad I cannot say the same thing about you.	0
 body	weight	Glad to see you have lost a bit of weight lately	That's thoughtful, thanks for noticing	1
 body	eyes	your brown eyes remind me of how shitty you look like	and your belly reminds me I need to make a pregnancy check	0
@@ -24,35 +18,24 @@ body	eyes	your brown eyes remind me of how shitty you look like	I know, I'm doin
 body	shoes	where did you buy those shoes, at the 19th century revival?	no, those are your mom's	0
 body	shoes	where did you buy those shoes, at the 19th century revival?	how did you know? (blushes)	1
 body	boobs	after the operation, I can't stop looking at that cleavage	after the operation, I still need to find it	0
-body	boobs	after the operation, I can't stop looking at that cleavage	"wanna see the full picture in the bathroom? ;)"	1
+body	boobs	after the operation, I can't stop looking at that cleavage	wanna see the full picture in the bathroom? ;)	1
 body	belly	your belly coming out of the pants reminds me of a Salvador Dali painting	pity I can't see anything coming out of your pants	0
 body	belly	your belly coming out of the pants reminds me of a Salvador Dali painting	I shouldn't have eaten all of those muffins... :(	1
 body	hands	you have beautiful hands	so I can strangle you better	0
 body	hands	you have beautiful hands	I wonder how I can use them...	1
-body	legs	I can't say if those are your legs or your new fur coat is very long	you're such a gentleman, oh sorry, gentlemidget	0
-body	legs	I can't say if those are your legs or your new fur coat is very long	I'm so sorry, didn't have time to shave today	1
-body	nails	are those nails or claws?	nails, they belonged to your mother...until this morning	0
-body	nails	are those nails or claws?	sorry, I need them to play the guitar :(	1
-body	tatoo	what's on that tatoo?	the corspe of your grandfather	0
-body	tatoo	what's on that tatoo?	our first kiss	1
 house	dishwasher	Oh darling, I forgot to turn on the dishwasher	no problem, you can practice in the kitchen here until your memory comes back	0
 house	dishwasher	Oh darling, I forgot to turn on the dishwasher	that's what we have a cleaning lady for	1
 house	couch	I was thinking about moving the couch in the other room	I was thinking about dislocating your jaw	0
 house	couch	I was thinking about moving the couch in the other room	nice so we can make love jumping from the couch to the bed!	1
 house	flowers	by the way, I really like the small cactus you put in the living room	Thanks, I thought about your d**k when I bought it	0
-house	flowers	by the way, I really like the small cactus you put in the living room	"I had to compensate something else ;)"	1
+house	flowers	by the way, I really like the small cactus you put in the living room	I had to compensate something else ;)	1
 house	room	So I was thinking of turning the extra room into a game room	Great, then I could turn it into a torture room for you	0
 house	room	So I was thinking of turning the extra room into a game room	Sounds good, what console should we buy first?	1
 house	pets	We should get another dog in the house besides you	I don't know, dogs and pigs don't get along usually	0
 house	pets	We should get another dog in the house besides you	Woof! (spank me my master)	1
 house	hair	Can you stop leaving hair everywhere? I feel like I live with a yeti!	Can you stop farting everywhere? I feel like I live in a warzone!	0
 house	hair	Can you stop leaving hair everywhere? I feel like I live with a yeti!	You're right, I'll just shave my head and problem solved :)	1
-house	curtains	darling, which color would you like for the new curtains?	any that prevents the light to illuminate your face	0
-house	curtains	darling, which color would you like for the new curtains?	red, like the passion I have for you!	1
-house	chair	by the way where's my chair that was next to the couch?	...Here! (CRASH)	0
-house	chair	by the way where's my chair that was next to the couch?	I sent it to the carpenter to get repaired for you	1
-house	bedroom	your room is so dirty they'll use it as a set for the next Mad Max movie	yours is so clean if I fart inside we need to paint the walls	0
-house	bedroom	your room is so dirty they'll use it as a set for the next Mad Max movie	I like that movie thanks!	1
+				
 free time	vacation	How about Greece for this summer vacation?	I am in no mood to get run over by a car, thanks	0
 free time	vacation	How about Greece for this summer vacation?	Sounds lovely, let's look for tickets	1
 free time	visit	Maybe we can go visit my parents soon	How about right after my last minute trip to Cuba?	0
@@ -63,14 +46,8 @@ free time	video games	Great news, I finally managed to max out my character in W
 free time	video games	Great news, I finally managed to max out my character in WoW	Finally noob, now we can actually do some dungeons together!	1
 free time	zoo	why don't we go to the zoo tomorrow?	cause I saw your mom already once this week	0
 free time	zoo	why don't we go to the zoo tomorrow?	lovely! Please let's make a romantic picture with the peacocks	1
-free time	music	what's your favourite song?	Die MF Die by Dope	0
-free time	music	what's your favourite song?	Love and marriage by Frank Sinatra	1
-free time	bowling	I feel like going to the bowling after dinner	finally we can practice how to split	0
-free time	bowling	I feel like going to the bowling after dinner	just don't split with me my love :)	1
-free time	origami	I learned how to make a goose out of a simple piece of paper	perfect, I was just feeling some foie gras	0
-free time	origami	I learned how to make a goose out of a simple piece of paper	and I'll never unlearn how amazing you are	1
-free time	yoga	you should go to yoga sometimes, I heard in Nepal they have 2 years long campus	why not, I also heard those monks are treating VERY well the women there	0
-free time	yoga	you should go to yoga sometimes, I heard in Nepal they have 2 years long campus	I could never stay far from you so long	1
+free time	music	what's your favourite song?	"Die MF Die" by Dope	0
+free time	music	what's your favourite song?	"Love and marriage" Frank Sinatra	1
 movies	romance	I swear if you make me watch The Notebook one more time, I'm gonna shoot us both	Don't you dare insult The Notebook, it's the greatest movie of all time!	0
 movies	romance	I swear if you make me watch The Notebook one more time, I'm gonna shoot us both	You're right, we can watch something else for a change	1
 movies	action	I cried so hard watching John Wick last night	How the fuck can you get so invested in this crap?	0
@@ -83,11 +60,3 @@ movies	scifi	I think Disney will just screw up the whole Star Wars franchise	I f
 movies	scifi	I think Disney will just screw up the whole Star Wars franchise	Agreed, I have a bad feeling about this	1
 movies	war	Shall we watch Save Private Ryan this evening?	Yes, so I can fantasize about you dying many times	0
 movies	war	Shall we watch Save Private Ryan this evening?	yes but hold me tight all movie along	1
-movies	animated	do you like Studio Ghibli animated movies?	yeah, they help me dream another world were you do not exist	0
-movies	animated	do you like Studio Ghibli animated movies?	kawaii!!!	1
-movies	splatter	How do you feel about Tarantino movies?	Well, I love 'Kill Bill', ...Bill	0
-movies	splatter	How do you feel about Tarantino movies?	Too much blood for me to be honest, but there are many other kinds of films we both like	1
-movies	adventure	My favourite character is Indiana Jones	Mine is the giant boulder that tries to kill him	0
-movies	adventure	My favourite character is Indiana Jones	"then show me your whip when we're home ;)"	1
-movies	spy	do I look like 007?	I think your giving youself two/three more centimeters than the reality	0
-movies	spy	do I look like 007?	"more 0025 ;)"	1
